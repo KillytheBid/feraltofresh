@@ -1,5 +1,3 @@
-import nodemailer from 'nodemailer';
-
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -33,17 +31,35 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Create Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false, // Use TLS
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    // Mailgun API configuration
+    const apiKey = process.env.MAILGUN_API_KEY;
+    const domain = process.env.MAILGUN_DOMAIN;
+    const mailgunUrl = `https://api.mailgun.net/v3/${domain}/messages`;
+
+    // Helper function to send email via Mailgun
+    const sendMailgunEmail = async (to, subject, html) => {
+      const formData = new URLSearchParams();
+      formData.append('from', `Feral2Fresh <noreply@${domain}>`);
+      formData.append('to', to);
+      formData.append('subject', subject);
+      formData.append('html', html);
+
+      const response = await fetch(mailgunUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${Buffer.from(`api:${apiKey}`).toString('base64')}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`Mailgun error: ${error}`);
+      }
+
+      return response.json();
+    };
 
     // Map service type to display name
     const serviceTypeMap = {
@@ -60,7 +76,11 @@ export default async function handler(req, res) {
       'extra-large': 'Extra Large (5000+ sq ft)',
     };
 
-    // Email to owner (Alanna Manning)
+    // Email recipient override via env (default for all outgoing mail)
+    const fixedRelayEmail = process.env.NOTIFY_EMAIL;
+
+    // Email to owner (or all copies for development/testing)
+    const ownerEmail = process.env.OWNER_EMAIL || fixedRelayEmail;
     const ownerEmailContent = `
       <h2>New Quote Request from Feral2Fresh Website</h2>
       <hr>
@@ -105,25 +125,11 @@ export default async function handler(req, res) {
       <p><strong>Feral2Fresh Team</strong></p>
     `;
 
-    // Send email to owner
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: `New Quote Request from ${name}`,
-      html: ownerEmailContent,
-      replyTo: email,
-    });
+    // Send email to owner/test inbox
+    await sendMailgunEmail(ownerEmail, `New Quote Request from ${name}`, ownerEmailContent);
 
-    // Send confirmation email to client
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Quote Request Received - Feral2Fresh',
-      html: clientEmailContent,
-    });
-
-    // Close the transporter
-    transporter.close();
+    // Send confirmation email to client (also forwarded to fixed relay for auditing)
+    await sendMailgunEmail(fixedRelayEmail, 'Quote Request Received - Feral2Fresh', clientEmailContent);
 
     return res.status(200).json({
       success: true,
