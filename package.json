@@ -1,0 +1,15 @@
+{
+  "name": "feral2fresh",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Professional residential and commercial cleaning services web application",
+  "author": "Alanna Manning",
+  "scripts": {
+    "dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "preview": "cd client && npm run preview"
+  },
+  "workspaces": [
+    "client"
+  ]
+}
