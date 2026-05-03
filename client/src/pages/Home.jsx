@@ -32,7 +32,7 @@ const Home = () => {
           <div className="hidden lg:flex items-center justify-center">
             <div className="w-72 h-72 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-lg">
               <img
-                src="possum.png"
+                src="/possum.png"
                 alt="Cleaning Icon"
                 className="w-full h-full object-cover"
                 style={{ transform: 'scale(1.1)' }}

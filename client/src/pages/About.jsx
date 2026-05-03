@@ -47,7 +47,7 @@ const About = () => {
             <div className="text-center">
               <div className="w-96 h-96 mx-auto mb-6 bg-gradient-to-br from-primary to-green-400 rounded-full flex items-center justify-center text-6xl shadow-lg">
               <img
-                src="../public/founder_selfie.jpeg"
+                src="/founder_selfie.jpeg"
                 alt="Alanna Manning"
                 className="w-full h-full object-cover rounded-full"
               />

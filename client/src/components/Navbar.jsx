@@ -16,7 +16,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold"><img src="../../public/possum.png" alt="Feral2Fresh Logo" /></span>
+              <img src="/possum.png" alt="Feral2Fresh Logo" className="w-full h-full object-cover rounded-full" />
             </div>
             <span className="font-bold text-xl text-dark hidden sm:inline">Feral2Fresh</span>
           </Link>
