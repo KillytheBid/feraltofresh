@@ -4,47 +4,9 @@ import Card from '../components/Card';
 import Button from '../components/Button';
 import QuoteForm from '../components/QuoteForm';
 import { Link } from 'react-router-dom';
+import { services, testimonials } from '../data/siteData';
 
 const Home = () => {
-  const services = [
-    {
-      title: 'Residential Cleaning',
-      description: 'Professional home cleaning tailored to your family\'s needs.',
-      icon: '🏠',
-    },
-    {
-      title: 'Commercial Cleaning',
-      description: 'Keep your workplace clean and professional.',
-      icon: '🏢',
-    },
-    {
-      title: 'Deep Clean',
-      description: 'Thorough transformation of your space.',
-      icon: '✨',
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Homeowner',
-      text: 'Feral2Fresh completely transformed my kitchen. The attention to detail is incredible!',
-      rating: 5,
-    },
-    {
-      name: 'Marcus Lee',
-      role: 'Office Manager',
-      text: 'Our office has never looked better. Professional, reliable, and on schedule.',
-      rating: 5,
-    },
-    {
-      name: 'Jennifer Smith',
-      role: 'Property Manager',
-      text: 'Alanna and her team are exceptional. They handle everything with care and precision.',
-      rating: 5,
-    },
-  ];
-
   return (
     <>
       {/* Hero Section */}
@@ -102,7 +64,7 @@ const Home = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          {services.slice(0, 3).map((service, index) => (
             <Card key={index} className="text-center">
               <div className="text-5xl mb-4">{service.icon}</div>
               <h3 className="text-2xl font-bold mb-3 text-dark">{service.title}</h3>
@@ -124,7 +86,7 @@ const Home = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.slice(0, 3).map((testimonial, index) => (
             <Card key={index} hover={false} className="border-l-4 border-primary">
               <div className="flex mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -147,7 +109,7 @@ const Home = () => {
       </Section>
 
       {/* CTA Section */}
-      <Section className="bg-gradient-to-r from-primary to-green-500 text-white text-center py-20">
+      {/* <Section className="bg-gradient-to-r from-primary to-green-500 text-white text-center py-20">
         <h2 className="text-4xl font-bold mb-4">Ready for a Fresh Start?</h2>
         <p className="text-lg mb-8 opacity-90">
           Let's transform your space. Get your personalized quote today.
@@ -155,7 +117,7 @@ const Home = () => {
         <Button variant="secondary" size="lg">
           Book Your Clean Today
         </Button>
-      </Section>
+      </Section> */}
     </>
   );
 };

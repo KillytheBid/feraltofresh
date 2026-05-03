@@ -1,6 +1,7 @@
 import React from 'react';
 import Section from '../components/Section';
 import QuoteForm from '../components/QuoteForm';
+import { contactInfo } from '../data/siteData';
 
 const Contact = () => {
   return (
@@ -24,34 +25,35 @@ const Contact = () => {
               <div>
                 <h3 className="text-lg font-bold text-primary mb-2">📧 Email</h3>
                 <a
-                  href="mailto:info@feral2fresh.com"
+                  href={`mailto:${contactInfo.email}`}
                   className="text-lg text-gray-700 hover:text-primary transition"
                 >
-                  info@feral2fresh.com
+                  {contactInfo.email}
                 </a>
               </div>
 
               <div>
                 <h3 className="text-lg font-bold text-primary mb-2">📞 Phone</h3>
                 <a
-                  href="tel:+1234567890"
+                  href={`tel:${contactInfo.phoneHref}`}
                   className="text-lg text-gray-700 hover:text-primary transition"
                 >
-                  (123) 456-7890
+                  {contactInfo.phone}
                 </a>
               </div>
 
               <div>
                 <h3 className="text-lg font-bold text-primary mb-2">⏰ Hours</h3>
-                <p className="text-gray-700">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p className="text-gray-700">Saturday: 10:00 AM - 4:00 PM</p>
-                <p className="text-gray-700">Sunday: By Appointment</p>
+                {contactInfo.hours.map((item) => (
+                  <p key={item.label} className="text-gray-700">{item.label}: {item.value}</p>
+                ))}
               </div>
 
               <div>
                 <h3 className="text-lg font-bold text-primary mb-2">📍 Service Areas</h3>
-                <p className="text-gray-700">Serving the greater metropolitan area</p>
-                <p className="text-gray-700">Residential & Commercial Properties</p>
+                {contactInfo.serviceAreas.map((area) => (
+                  <p key={area} className="text-gray-700">{area}</p>
+                ))}
               </div>
             </div>
           </div>

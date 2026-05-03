@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { navLinks, contactInfo } from '../data/siteData';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">F2F</span>
+                <span className="text-white font-bold">
+                  <img src="../../public/possum.png" alt="Feral2Fresh Logo"  className='rounded-full'/>
+                  </span>
               </div>
               <span className="font-bold text-lg">Feral2Fresh</span>
             </div>
@@ -25,10 +28,13 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><Link to="/" className="hover:text-primary transition">Home</Link></li>
-              <li><Link to="/services" className="hover:text-primary transition">Services</Link></li>
-              <li><Link to="/about" className="hover:text-primary transition">About</Link></li>
-              <li><Link to="/testimonials" className="hover:text-primary transition">Testimonials</Link></li>
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="hover:text-primary transition">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
     
@@ -47,12 +53,23 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="mailto:info@feral2fresh.com" className="hover:text-primary transition">info@feral2fresh.com</a></li>
-              <li><a href="tel:+1234567890" className="hover:text-primary transition">(123) 456-7890</a></li>
+              <li>
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-primary transition">
+                  {contactInfo.email}
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${contactInfo.phoneHref}`} className="hover:text-primary transition">
+                  {contactInfo.phone}
+                </a>
+              </li>
               <li className="mt-4">
                 <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-primary transition">Facebook</a>
-                  <a href="#" className="text-gray-400 hover:text-primary transition">Instagram</a>
+                  {contactInfo.socialLinks.map((link) => (
+                    <a key={link.label} href={link.href} className="text-gray-400 hover:text-primary transition">
+                      {link.label}
+                    </a>
+                  ))}
                 </div>
               </li>
             </ul>

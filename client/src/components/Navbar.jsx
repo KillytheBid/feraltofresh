@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { navLinks } from '../data/siteData';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,14 +9,6 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'About', path: '/about' },
-    { name: 'Testimonials', path: '/testimonials' },
-    { name: 'Contact', path: '/contact' },
-  ];
-
   return (
     <nav className="bg-white shadow-md sticky top-0 z-40">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,7 +16,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold">F2F</span>
+              <span className="text-white font-bold"><img src="../../public/possum.png" alt="Feral2Fresh Logo" /></span>
             </div>
             <span className="font-bold text-xl text-dark hidden sm:inline">Feral2Fresh</span>
           </Link>

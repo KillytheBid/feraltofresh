@@ -7,6 +7,7 @@ import { sendQuoteEmail } from '../services/emailService';
 import Button from './Button';
 import Input from './Input';
 import Spinner from './Spinner';
+import { serviceTypes, propertySizes } from '../data/siteData';
 
 const QuoteForm = ({ showTitle = true, minimal = false }) => {
   const {
@@ -23,20 +24,6 @@ const QuoteForm = ({ showTitle = true, minimal = false }) => {
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
-
-  const serviceTypes = [
-    { value: 'residential', label: 'Residential Cleaning' },
-    { value: 'commercial', label: 'Commercial Cleaning' },
-    { value: 'deep-clean', label: 'Deep Clean' },
-    { value: 'move-in-out', label: 'Move-In/Out' },
-  ];
-
-  const propertySizes = [
-    { value: 'small', label: 'Small (Under 1000 sq ft)' },
-    { value: 'medium', label: 'Medium (1000-2500 sq ft)' },
-    { value: 'large', label: 'Large (2500-5000 sq ft)' },
-    { value: 'extra-large', label: 'Extra Large (5000+ sq ft)' },
-  ];
 
   const onSubmit = async (data) => {
     // Honeypot anti-spam: bots often fill hidden fields.

@@ -30,14 +30,14 @@ const About = () => {
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
               Our mission is simple: deliver consistent, high-quality cleaning that makes a noticeable 
-              difference—every time.
+              difference every time.
             </p>
           </div>
-          <div className="flex items-center justify-center">
+          {/* <div className="flex items-center justify-center">
             <div className="w-64 h-64 bg-gradient-to-br from-primary to-green-400 rounded-lg flex items-center justify-center text-8xl shadow-lg">
               👩‍💼
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Founder Section */}
@@ -45,8 +45,12 @@ const About = () => {
           <h2 className="text-4xl font-bold mb-8 text-dark text-center">Meet the Founder</h2>
           <Card className="max-w-2xl mx-auto">
             <div className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-primary to-green-400 rounded-full flex items-center justify-center text-6xl shadow-lg">
-                🌟
+              <div className="w-96 h-96 mx-auto mb-6 bg-gradient-to-br from-primary to-green-400 rounded-full flex items-center justify-center text-6xl shadow-lg">
+              <img
+                src="../public/founder_selfie.jpeg"
+                alt="Alanna Manning"
+                className="w-full h-full object-cover rounded-full"
+              />
               </div>
               <h3 className="text-3xl font-bold text-dark mb-2">Alanna Manning</h3>
               <p className="text-xl text-primary font-semibold mb-4">Founder & Owner</p>
@@ -61,7 +65,7 @@ const About = () => {
       </Section>
 
       {/* Mission Section */}
-      <Section className="bg-light py-20">
+      {/* <Section className="bg-light py-20">
         <h2 className="section-title">Our Mission</h2>
         <div className="max-w-3xl mx-auto">
           <Card className="border-l-4 border-primary text-center">
@@ -75,10 +79,10 @@ const About = () => {
             </p>
           </Card>
         </div>
-      </Section>
+      </Section> */}
 
       {/* Values Section */}
-      <Section className="bg-white py-20">
+      {/* <Section className="bg-white py-20">
         <h2 className="section-title">Our Values</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card className="text-center">
@@ -103,7 +107,7 @@ const About = () => {
             </p>
           </Card>
         </div>
-      </Section>
+      </Section> */}
     </>
   );
 };
