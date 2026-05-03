@@ -12,11 +12,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">
-                  <img src="../../public/possum.png" alt="Feral2Fresh Logo"  className='rounded-full'/>
-                  </span>
-              </div>
+              <img src="/possum.png" alt="Feral2Fresh Logo" className="w-8 h-8 rounded-full" />
               <span className="font-bold text-lg">Feral2Fresh</span>
             </div>
             <p className="text-gray-400 text-sm">
