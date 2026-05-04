@@ -16,7 +16,7 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-grow">
